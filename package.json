@@ -1,0 +1,30 @@
+{
+  "name": "dx",
+  "version": "1.0.0",
+  "main": "dx.js",
+  "bin": {
+    "dx": "./dx.js"
+  },
+  "keywords": [
+    "transform",
+    "output",
+    "logging",
+    "developer",
+    "experience",
+    "dx"
+  ],
+  "author": {
+    "name": "Leo Giovanetti",
+    "email": "hello@leog.me",
+    "url": "https://x.com/leog"
+  },
+  "license": "Apache-2.0",
+  "description": "Enhancing logging developer experience",
+  "devDependencies": {
+    "mock-require": "^3.0.3",
+    "vitest": "^3.0.9"
+  },
+  "scripts": {
+    "test": "vitest"
+  }
+}
