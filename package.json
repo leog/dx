@@ -13,6 +13,11 @@
     "experience",
     "dx"
   ],
+  "files": [
+    "package.json",
+    "dx.js",
+    "README.md"
+  ],
   "author": {
     "name": "Leo Giovanetti",
     "email": "hello@leog.me",
