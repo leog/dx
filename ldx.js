@@ -4,17 +4,17 @@ const { resolve } = require("node:path");
 const { spawn } = require("child_process");
 
 // Load configuration
-const project = resolve(process.cwd(), "dx.config.js");
+const project = resolve(process.cwd(), "ldx.config.js");
 let config;
 try {
   config = require(project);
 } catch (e) {
-  console.error("Oops, no dx.config.js file found!");
+  console.error("Oops, no ldx.config.js file found!");
   process.exit(1);
 }
 
 console.log(
-  "Thank you for using DX! Collaborate or report issues at https://github.com/leog/dx \n"
+  "Thank you for using LDX! Collaborate or report issues at https://github.com/leog/ldx \n"
 );
 
 // Function to execute the command and process output
@@ -70,7 +70,7 @@ function processOutput(line) {
       try {
         return value(line);
       } catch (e) {
-        console.warn("DX: provided function errored: ", e.message);
+        console.warn("LDX: provided function errored: ", e.message);
         return undefined;
       }
     }

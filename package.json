@@ -1,13 +1,13 @@
 {
-  "name": "dx",
+  "name": "ldx",
   "version": "1.0.0",
-  "main": "dx.js",
+  "main": "ldx.js",
   "bin": {
-    "dx": "dx.js"
+    "ldx": "ldx.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leog/dx.git"
+    "url": "git+https://github.com/leog/ldx.git"
   },
   "keywords": [
     "transform",
@@ -19,7 +19,7 @@
   ],
   "files": [
     "package.json",
-    "dx.js",
+    "ldx.js",
     "README.md"
   ],
   "author": {

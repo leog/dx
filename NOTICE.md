@@ -1,4 +1,4 @@
-DX - Enhancing logging developer experience
+LDX - Enhancing logging developer experience
 
 Copyright 2025 Leo Giovanetti. All rights reserved.
 

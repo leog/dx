@@ -1,4 +1,4 @@
-# DX - Enhancing logging developer experience
+# LDX - Logging Developer Experience
 A lightweight tool to enhance your development workflow by processing command output with customizable transformations.
 
 ## Features
@@ -12,23 +12,23 @@ A lightweight tool to enhance your development workflow by processing command ou
 - **Developer-Friendly**: Improves readability and reduces noise in logs.
 
 ## Installation
-To install DX globally, run:
+To install LDX globally, run:
 
 ```bash
-pnpm install -g dx
+pnpm install -g ldx
 ```
 
 Alternatively, you can install it locally in your project:
 
 ```bash
-pnpm install --save-dev dx
+pnpm install --save-dev ldx
 ```
 
 ## Usage
 
 ### 1. Create a Configuration File
   
-Create a `dx.config.js` file in your project's root directory. This file defines the patterns and transformations for your command output.
+Create a `ldx.config.js` file in your project's root directory. This file defines the patterns and transformations for your command output.
 
 Example:
 
@@ -42,18 +42,18 @@ module.exports = {
 };
 ```
 
-### 2. Run Commands with DX
+### 2. Run Commands with LDX
 
-Use DX to run your commands and transform their output:
+Use LDX to run your commands and transform their output:
 
 ```bash
-dx <your-command>
+ldx <your-command>
 ```
 
 For example:
 
 ```bash
-dx pnpm run dev
+ldx pnpm run dev
 ```
 
 ## Configuration Options
@@ -97,19 +97,19 @@ pnpm test
 ### Basic Usage
 
 ```bash
-dx echo "Testing DX tool"
+ldx echo "Testing LDX tool"
 ```
 
 ### With package manager scripts
 
 ```bash
-dx pnpm run dev
+ldx pnpm run dev
 ```
 
 ### With complex commands
 
 ```bash
-dx docker-compose up
+ldx docker-compose up
 ```
 ## Development
 
