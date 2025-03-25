@@ -1,6 +1,6 @@
 {
   "name": "ldx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "ldx.js",
   "bin": {
     "ldx": "ldx.js"
