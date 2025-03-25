@@ -92,9 +92,11 @@ module.exports = {
 };
 
 // Execute the command if this script is run directly
+/* v8 ignore start */
 if (require.main === module) {
   // Main execution
   executeAndProcessCommand()
     .then(() => console.log("Command executed successfully."))
     .catch((error) => console.error("Error executing command:", error));
 }
+/* v8 ignore end */

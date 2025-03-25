@@ -7,6 +7,24 @@ mock("./dx.config.js", {
   "Test match 3": "🐳 Test match 3 processed",
 });
 
+describe("config file check", () => {
+  let errorSpy;
+  let exitSpy;
+
+  beforeEach(() => {
+    vi.resetModules();
+    errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    exitSpy = vi.spyOn(process, "exit").mockImplementation(() => {});
+  });
+
+  test("logs an error and exits when no config file is found", async () => {
+    mock.stopAll();
+    await import("./dx.js");
+    expect(errorSpy).toHaveBeenCalledWith("Oops, no dx.config.js file found!");
+    expect(exitSpy).toHaveBeenCalledWith(1);
+  });
+});
+
 describe("processOutput", () => {
   let warnSpy;
 
@@ -86,8 +104,19 @@ describe("processOutput", () => {
 });
 
 describe("executeAndProcessCommand", () => {
+  let logSpy;
+
   beforeEach(() => {
     vi.clearAllMocks();
+    mock.stopAll();
+    logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+
+    // Reset the module cache to ensure fresh imports
+    vi.resetModules();
+  });
+
+  afterEach(() => {
+    logSpy.mockRestore();
   });
 
   test("rejects when no command is provided", async () => {
@@ -136,5 +165,42 @@ describe("executeAndProcessCommand", () => {
     await expect(executeAndProcessCommand()).rejects.toThrow(
       "Command failed with exit code 1"
     );
+  });
+
+  test("processes static strings correctly when command executes", async () => {
+    // Setup config mock FIRST
+    mock("./dx.config.js", {
+      "Test output": "✅ Processed output",
+    });
+
+    vi.spyOn(process, "argv", "get").mockReturnValue([
+      "node",
+      "dx.js",
+      "echo",
+      "Test output",
+    ]);
+
+    // Mock spawn to simulate command output
+    const mockSpawn = vi.fn(() => ({
+      stdout: {
+        on: vi.fn((event, callback) => {
+          if (event === "data") {
+            // Simulate actual command output
+            callback(Buffer.from("Test output\n"));
+          }
+        }),
+      },
+      stderr: { on: vi.fn() },
+      on: vi.fn((event, callback) => {
+        if (event === "close") callback(0);
+      }),
+    }));
+    vi.spyOn(require("child_process"), "spawn").mockImplementation(mockSpawn);
+
+    // Import AFTER all mocks are set up
+    const { executeAndProcessCommand } = await import("./dx.js");
+    await executeAndProcessCommand();
+
+    expect(logSpy).toHaveBeenCalledWith("✅ Processed output");
   });
 });
